@@ -7,11 +7,11 @@
 * $Rev:
 * $Date: $
 ******************************************************************************
- * Copyright 2016 Semiconductor Components Industries LLC (d/b/a “ON Semiconductor”).
+ * Copyright 2016 Semiconductor Components Industries LLC (d/b/a ï¿½ON Semiconductorï¿½).
  * All rights reserved.  This software and/or documentation is licensed by ON Semiconductor
  * under limited terms and conditions.  The terms and conditions pertaining to the software
  * and/or documentation are available at http://www.onsemi.com/site/pdf/ONSEMI_T&C.pdf
- * (“ON Semiconductor Standard Terms and Conditions of Sale, Section 8 Software”) and
+ * (ï¿½ON Semiconductor Standard Terms and Conditions of Sale, Section 8 Softwareï¿½) and
  * if applicable the software license agreement.  Do not use this software and/or
  * documentation unless you have carefully read and you agree to the limited terms and
  * conditions.  By using this software and/or documentation, you agree to the limited
@@ -34,8 +34,7 @@
 *  Header files                                                                                  *
 *                                                                                                *
 *************************************************************************************************/
-#include "NCS36510Init.h"
-#include "clock.h"
+
 void fPmuInit(void);
 /**
  * @brief
@@ -83,23 +82,25 @@ boolean fTrim()
         RFANATRIMREG->TX_VCO_TRIM_LUT1 = TRIMREG->TX_VCO_LUT1.WORD;;
         RFANATRIMREG->TX_VCO_TRIM_LUT2 = TRIMREG->TX_VCO_LUT2.WORD;;
 
-		if ( TRIMREG->MAC_ADDR_LOW != 0xFFFFFFFF ) 
-		{
-			MACHWREG->LONG_ADDRESS_LOW = TRIMREG->MAC_ADDR_LOW;
-		}
+        /*TODO - is this the right place for this or is it covered by fNcs36510Init */
+        /*
+    		if ( TRIMREG->MAC_ADDR_LOW != 0xFFFFFFFF ) 
+    		{
+    			MACHWREG->LONG_ADDRESS_LOW = TRIMREG->MAC_ADDR_LOW;
+    		}
 
-		if ( TRIMREG->MAC_ADDR_HIGH != 0xFFFFFFFF )
-		{
-			MACHWREG->LONG_ADDRESS_HIGH = TRIMREG->MAC_ADDR_HIGH;
-		}
-
-		/* TODO
-		if( !(( USERTRIMREG->MAC_ADDRESS_LOW == 0xFFFFFFFF ) &&
-				(USERTRIMREG->MAC_ADDRESS_HIGH == 0xFFFFFFFF )))
-		{
-			MACHWREG->LONG_ADDRESS_LOW = USERTRIMREG->MAC_ADDRESS_LOW;
-			MACHWREG->LONG_ADDRESS_HIGH = USERTRIMREG->MAC_ADDRESS_HIGH;
-		}  */	
+    		if ( TRIMREG->MAC_ADDR_HIGH != 0xFFFFFFFF )
+    		{
+    			MACHWREG->LONG_ADDRESS_HIGH = TRIMREG->MAC_ADDR_HIGH;
+    		}
+        */
+    		/* TODO
+    		if( !(( USERTRIMREG->MAC_ADDRESS_LOW == 0xFFFFFFFF ) &&
+    				(USERTRIMREG->MAC_ADDRESS_HIGH == 0xFFFFFFFF )))
+    		{
+    			MACHWREG->LONG_ADDRESS_LOW = USERTRIMREG->MAC_ADDRESS_LOW;
+    			MACHWREG->LONG_ADDRESS_HIGH = USERTRIMREG->MAC_ADDRESS_HIGH;
+    		}  */	
 
         return True;
     }
@@ -269,33 +270,8 @@ static void fHwInit(void)
 
 extern void __Vectors;
 
-void __iar_data_init3();
-uint8_t GlobFlashPageCache[0x800];
-void fFlashPageBackUp(void);
-
-#define __MUST_EXEC_RAM __EXECUTE_FROM_RAM
-
-#ifndef IAR
-#define __EXECUTE_FROM_RAM __attribute__((section ("RAM_EXEC")))
-#else
-#define __EXECUTE_FROM_RAM
-#endif
-
-#ifdef IAR 
-#ifndef __IAR_MUST_EXEC_RAM
-#pragma section = "EXECINRAM" 
-#define __IAR_MUST_EXEC_RAM	@"EXECINRAM"
-#endif
-#else
-#define __IAR_MUST_EXEC_RAM
-#endif
-
- __MUST_EXEC_RAM void fFlashWrite(void) __IAR_MUST_EXEC_RAM;
-
 void fNcs36510Init(void)
 {
-	/* Initialize data section */
-	__iar_data_init3();
 	
     /** Setting this register is helping to debug imprecise bus access faults
     * making them precise bus access faults. It has an impact on application
@@ -315,93 +291,14 @@ void fNcs36510Init(void)
 
     /**- Initialize hardware */
     fHwInit();
-
-	fFlashPageBackUp();
-
-	__disable_irq();    /* Disable Interrupts */
-	fFlashWrite() ;
-	__enable_irq();     /* Enable Interrupts */
+    
+    if ( TRIMREG->MAC_ADDR_LOW != 0xFFFFFFFF ) 
+    {
+      MACHWREG->LONG_ADDRESS_LOW = TRIMREG->MAC_ADDR_LOW;
+    }
+    
+    if ( TRIMREG->MAC_ADDR_HIGH != 0xFFFFFFFF )
+    {
+      MACHWREG->LONG_ADDRESS_HIGH = TRIMREG->MAC_ADDR_HIGH;
+    }
 }
-
-typedef union
-{
-	uint64_t NCS36510_MAC_ADDRESS;
-	uint8_t buf[8];
-}MacAddress_t;
-
-MacAddress_t MacAddress;
-
-/* MAC address trim start location */
-#define NCS36510_MAC_ADDRESS_START_LOCATION 0x1FA4
-
-void fFlashPageBackUp(void)
-{
-	/* Provide chip specific MAC address here
-	 * Eg: 
-	   ABC.MBED_MAC_ADDRESS_MSB = 0x<12345678><10111213>;
-	   32 bit Upper MAC address = 0x60C0BF00. 32 bit Lower MAC address = 0x0000012D
-	 */
-	MacAddress.NCS36510_MAC_ADDRESS = 0x60C0BF000000012D;
-
-	uint8_t *destination;
-	uint8_t *page_address;
-
-	destination = (uint8_t *)(0x1FA4);
-	page_address = (uint8_t*) ((uint32_t) destination & 0xFFFFF800 );
-	
-	/* Read full page into RAM */
-	memcpy(GlobFlashPageCache, page_address, 0x800);
-
-	/* Partially overwrite the content of the page in RAM */
-	memcpy(GlobFlashPageCache + ((uint32_t) NCS36510_MAC_ADDRESS_START_LOCATION & ~0xFFFFF800), MacAddress.buf, 8);
-}
-
-
-__MUST_EXEC_RAM void fFlashWrite(void) __IAR_MUST_EXEC_RAM
-{
-	uint8_t *destination;
-	uint8_t *page_address;
-	uint32_t page_size;
-	uint32_t Count = 0;
-
-	destination = (uint8_t *)(0x1FA4);
-	page_address = (uint8_t*) ((uint32_t) destination & 0xFFFFF800 );
-	page_size = 0x800;
-
-	/* Order page erase of the target page.  Just use the destination address
-	 * to program page erase, hardware makes sure the correct page is erased
-	 */
-	CLOCK_ENABLE(CLOCK_FLASH);
-
-	FLASHREG->UNLOCK1 = 0xBB781AE9;
-	FLASHREG->UNLOCKA = 0xB56D9099;
-
-	/* Kick off erase cycle. */
-	FLASHREG->ADDR = 0x1FA4;
-	FLASHREG->COMMAND.WORD = 0x1;
-
-	while (FLASHREG->STATUS.BITS.FLASH_A_BUSY) {}
-
-	/* Make sure the CM3 hangs while write is ongoing */
-	FLASHREG->CONTROL.BITS.WRITE_BLOCK = 0x1;
-
-	FLASHREG->UNLOCK1 = 0xBB781AE9;
-	FLASHREG->UNLOCKA = 0xB56D9099;
-
-	uint32_t *SrcPtr = (uint32_t *)GlobFlashPageCache;
-	uint32_t *DstPtr = (uint32_t *)page_address;
-
-	for(Count = 0; Count < ( page_size/4 ); Count++)
-	{
-		*DstPtr++ = *SrcPtr++;
-	}
-
-	for(uint16_t i =0x00; i < 0x0200; i++ );
-	while (FLASHREG->STATUS.BITS.FLASH_A_BUSY) {}
-	
-	FLASHREG->UNLOCK1 = 1;
-	FLASHREG->UNLOCKA = 1;
-
-	return;
-}
-
