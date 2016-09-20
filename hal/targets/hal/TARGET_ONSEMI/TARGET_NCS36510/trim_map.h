@@ -7,11 +7,11 @@
 * $Rev: 3727 $
 * $Date: 2015-09-14 14:38:34 +0530 (Mon, 14 Sep 2015) $
 ******************************************************************************
- * Copyright 2016 Semiconductor Components Industries LLC (d/b/a “ON Semiconductor”).
+ * Copyright 2016 Semiconductor Components Industries LLC (d/b/a ï¿½ON Semiconductorï¿½).
  * All rights reserved.  This software and/or documentation is licensed by ON Semiconductor
  * under limited terms and conditions.  The terms and conditions pertaining to the software
  * and/or documentation are available at http://www.onsemi.com/site/pdf/ONSEMI_T&C.pdf
- * (“ON Semiconductor Standard Terms and Conditions of Sale, Section 8 Software”) and
+ * (ï¿½ON Semiconductor Standard Terms and Conditions of Sale, Section 8 Softwareï¿½) and
  * if applicable the software license agreement.  Do not use this software and/or
  * documentation unless you have carefully read and you agree to the limited terms and
  * conditions.  By using this software and/or documentation, you agree to the limited
@@ -52,8 +52,8 @@
 /** trim register map */
 typedef struct {						/**< REV B 			REV D	*/
     __I uint32_t PAD0;					/**< 0x1FA0 		0x1FA0	*/
-    __I uint32_t APP_RESERVED0;			/**< 0x1FA4 		0x1FA4	*/
-    __I uint32_t APP_RESERVED1;			/**< 0x1FA8 		0x1FA8	*/
+    __I uint32_t MAC_ADDR_LOW;			/**< 0x1FA4	*/
+  	__I uint32_t MAC_ADDR_HIGH;			/**< 0x1FA8	*/
 #ifdef REVB
     __I uint32_t TX_POWER;				/**< 0x1FAC */
 #endif
