@@ -74,7 +74,7 @@ class ARM(mbedToolchain):
             self.flags['common'].append("-g")
             self.flags['c'].append("-O0")
         else:
-            self.flags['c'].append("-O3")
+            self.flags['c'].append("-Ospace")
 
         self.asm = [main_cc] + self.flags['common'] + self.flags['asm'] + ["-I \""+ARM_INC+"\""]
         self.cc = [main_cc] + self.flags['common'] + self.flags['c'] + ["-I \""+ARM_INC+"\""]
