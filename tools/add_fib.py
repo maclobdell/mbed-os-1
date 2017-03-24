@@ -16,12 +16,10 @@ import itertools
 import binascii
 import intelhex
 from tools.config import Config
+import sys 
 
 FIB_BASE = 0x2000
 FLASH_BASE = 0x3000
-FLASH_A_SIZE = 0x52000
-FLASH_B_BASE = 0x00100000
-
 FW_REV = 0x01000100
 TRIM_BASE = 0x2800
 
@@ -32,33 +30,35 @@ def ranges(i):
 
 
 def add_fib_at_start(arginput):
-	#expects binary file with name specified by arginput (without extension).  
-    # Binary may include large unused region within the gap between flash blocks.
     import os
-
-    input_file = arginput + ".bin"
-    file_name_hex = arginput + ".hex"
- 
-   # Read in hex file
-    input_hex_file = intelhex.IntelHex()
-
+# Take binary file back up to '_orig.bin'
     filesize = os.path.getsize(arginput + ".bin")
+    if filesize > 0x4F000:
+# Remove gap between Flash A and B 
+        origfile = open(arginput + ".bin", "rb")
+        newfile = open(arginput + "_new.bin", "wb")
+        FlashA = origfile.read(0x4F000)
+        newfile.write(FlashA)
+        origfile.seek(0xFF000)
+        FlashB = origfile.read(filesize)
+        newfile.write(FlashB)
+        newfile.close()
+        origfile.close()
+        Origfile = arginput + ".bin"
+        Newfile = arginput + "_new.bin"
+        os.remove(Origfile)
+        os.rename(Newfile, Origfile)
+    input_file = arginput + ".bin"
+    file_name_hex = arginput + "_fib.hex"
+    file_name_bin = arginput + ".bin"
 
-    if filesize > FLASH_A_SIZE:
-        input_bin_file = open(input_file, "rb")
-        print("data greater than flash bank A")
-	    # Remove gap between Flash A and B 
-        FlashA = input_bin_file.read(0x4f000) #(FLASH_A_SIZE - FLASH_BASE))
-        input_hex_file.puts(FLASH_BASE, FlashA)		
-        input_bin_file.seek(0xFF000) #(FLASH_B_BASE - 0x1000)
-        FlashB = input_bin_file.read(filesize)
-        input_hex_file.puts(FLASH_B_BASE, FlashB)		       
-        input_bin_file.close()  
-        os.remove(input_file)  
-    else:
-        input_hex_file.loadbin(input_file, offset=FLASH_BASE)
-    
+    # Read in hex file
+    input_hex_file = intelhex.IntelHex()
+    input_hex_file.padding = 0x00
+    input_hex_file.loadbin(input_file, offset=FLASH_BASE)
+
     output_hex_file = intelhex.IntelHex()
+    output_hex_file.padding = 0x00
 
     # Get the starting and ending address
     addresses = input_hex_file.addresses()
@@ -226,8 +226,13 @@ def add_fib_at_start(arginput):
     for i in range(trim_area_start + trim_size, user_code_start):
         output_hex_file[i] = 0xFF
 
-    #merge fib & trim hex file with application hex file
+    #merge two hex files
     output_hex_file.merge(input_hex_file, overlap='error')
 
-    # Write out file
+    # Write out file(s)
     output_hex_file.tofile(file_name_hex, 'hex')
+    output_hex_file.tofile(file_name_bin, 'bin')
+
+if __name__ == '__main__':
+    arginput = sys.argv[1]
+    add_fib_at_start(arginput)
