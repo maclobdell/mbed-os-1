@@ -53,14 +53,11 @@ def add_fib_at_start(arginput):
         input_bin_file.seek(0xFF000) #(FLASH_B_BASE - 0x1000)
         FlashB = input_bin_file.read(filesize)
         input_hex_file.puts(FLASH_B_BASE, FlashB)		       
-        #input_hex_file.tofile(arginput + "_640k.hex", 'hex') #for debugging only, remove this line later
+        input_bin_file.close()  
+        os.remove(input_file)  
     else:
         input_hex_file.loadbin(input_file, offset=FLASH_BASE)
-        #input_hex_file.tofile(arginput + "_320k.hex", 'hex')  #for debugging only, remove this line later
     
-    #input_bin_file.close()  #for debugging only, keep the bin file, just close it
-    os.remove(input_file)
-
     output_hex_file = intelhex.IntelHex()
 
     # Get the starting and ending address
