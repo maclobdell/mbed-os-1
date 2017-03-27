@@ -43,6 +43,7 @@ typedef enum {
 #define MCR20A_SPI_CS     PTB10
 #define MCR20A_SPI_RST    PTB19
 #define MCR20A_SPI_IRQ    PTB3
+#define MCR20A_CLK_SEL    PTC0
 
 typedef enum {
     I2C_0 = 0,
