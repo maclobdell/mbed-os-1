@@ -92,7 +92,7 @@ const PinMap PinMap_UART_RTS[] = {
 
 /************SPI***************/
 const PinMap PinMap_SPI_SCLK[] = {
-    {PTB11, SPI_1, 1},
+    {PTB11, SPI_1, 2},
     {PTC5,  SPI_0, 2},
     {PTD1,  SPI_0, 2},
     {PTE2,  SPI_1, 2},
@@ -121,7 +121,7 @@ const PinMap PinMap_SPI_MISO[] = {
 };
 
 const PinMap PinMap_SPI_SSEL[] = {
-    {PTB10, SPI_1, 2},
+    {PTB10, SPI_1, 1},
     {PTC4,  SPI_0, 2},
     {PTE4,  SPI_1, 2},
     {PTE16, SPI_0, 2},
