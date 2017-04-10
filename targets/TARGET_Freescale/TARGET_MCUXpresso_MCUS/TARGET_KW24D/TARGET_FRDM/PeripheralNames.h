@@ -41,7 +41,7 @@ typedef enum {
 #define MCR20A_SPI_MISO   PTB17
 #define MCR20A_SPI_SCLK   PTB11
 #define MCR20A_SPI_CS     PTB10
-#define MCR20A_SPI_RST    PTB19
+#define MCR20A_SPI_RST    PTE2 // dummy pin to replace PTB19, which if driven could cause loss of clock on kw24d
 #define MCR20A_SPI_IRQ    PTB3
 #define MCR20A_CLK_SEL    PTC0
 
