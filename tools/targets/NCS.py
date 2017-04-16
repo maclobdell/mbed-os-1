@@ -29,17 +29,16 @@ def ranges(i):
 
 
 def add_fib_at_start(arginput):
-    input_file = arginput + ".bin"
-    file_name_hex = arginput + "_fib.hex"
+    input_file = arginput + ".hex"
+    file_name_hex = arginput + ".hex"
     file_name_bin = arginput + ".bin"
 
     # Read in hex file
     input_hex_file = intelhex.IntelHex()
-    input_hex_file.padding = 0x00
-    input_hex_file.loadbin(input_file, offset=FLASH_BASE)
+    input_hex_file.loadhex(input_file)
 
+    # Create new hex file
     output_hex_file = intelhex.IntelHex()
-    output_hex_file.padding = 0x00
 
     # Get the starting and ending address
     addresses = input_hex_file.addresses()
@@ -212,4 +211,3 @@ def add_fib_at_start(arginput):
 
     # Write out file(s)
     output_hex_file.tofile(file_name_hex, 'hex')
-    output_hex_file.tofile(file_name_bin, 'bin')
