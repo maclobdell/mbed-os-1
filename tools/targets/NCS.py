@@ -18,9 +18,12 @@ import intelhex
 from tools.config import Config
 
 FIB_BASE = 0x2000
-FLASH_BASE = 0x3000
-FW_REV = 0x01000100
 TRIM_BASE = 0x2800
+FLASH_BASE = 0x3000
+FLASHA_SIZE = 0x52000
+FLASHB_BASE = 0x00102000
+FLASHB_SIZE = 0x52000
+FW_REV = 0x01000100
 
 def ranges(i):
     for _, b in itertools.groupby(enumerate(i), lambda x_y: x_y[1] - x_y[0]):
@@ -36,7 +39,8 @@ def add_fib_at_start(arginput):
     # Read in hex file
     input_hex_file = intelhex.IntelHex()
     input_hex_file.loadhex(input_file)
-
+    #set padding value to be returned when reading from unspecified address
+    input_hex_file.padding = 0xFF    
     # Create new hex file
     output_hex_file = intelhex.IntelHex()
 
@@ -47,18 +51,42 @@ def add_fib_at_start(arginput):
     regions = len(start_end_pairs)
 
     if regions == 1:
+        #single range indicating fits within first flash block (<320K)
         start, end = start_end_pairs[0]
+        print("Memory start 0x%08X, end 0x%08X" % (start, end))
+        # Compute checksum over the range (don't include data at location of crc)
+        size = end - start + 1
+        data = input_hex_file.tobinarray(start=start, size=size)
+        crc32 = binascii.crc32(data) & 0xFFFFFFFF    
     else:
-        start = min(min(start_end_pairs))
-        end = max(max(start_end_pairs))
+        #multiple ranges indicating requires both flash blocks (>320K)
+        start, end = start_end_pairs[0]
+        start2, end2 = start_end_pairs[1]
+        print("Region 1: memory start 0x%08X, end 0x%08X" % (start, end))
+        print("Region 2: memory start 0x%08X, end 0x%08X" % (start2, end2))
+        # Compute checksum over the range (don't include data at location of crc)
+        # replace end with end of flash block A
+        end = FLASHA_SIZE - 1
+        size = end - start + 1
+        data = input_hex_file.tobinarray(start=start, size=size)
+        
+        # replace start2 with base of flash block B    
+        start2 = FLASHB_BASE
+        size2 = end2 - start2 + 1
+        data2 = input_hex_file.tobinarray(start=start2, size=size2)
+        
+        #concatenate data and data2 arrays together
+        data.extend(data2)
+        crc32 = binascii.crc32(data) & 0xFFFFFFFF
 
+        #replace size with sum of two memory region sizes
+        size = size + size2 
+        
     assert start >= FLASH_BASE, ("Error - start 0x%x less than begining of user\
     flash area" %start)
-    # Compute checksum over the range (don't include data at location of crc)
-    size = end - start + 1
-    data = input_hex_file.tobinarray(start=start, size=size)
-    crc32 = binascii.crc32(data) & 0xFFFFFFFF
-
+    
+    assert regions <= 2, ("Error - more than 2 memory regions found")
+    
     fw_rev = FW_REV
 
     checksum = (start + size + crc32 + fw_rev) & 0xFFFFFFFF
@@ -211,3 +239,4 @@ def add_fib_at_start(arginput):
 
     # Write out file(s)
     output_hex_file.tofile(file_name_hex, 'hex')
+    output_hex_file.tofile(file_name_bin, 'bin')
