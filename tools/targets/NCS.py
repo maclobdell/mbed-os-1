@@ -239,4 +239,3 @@ def add_fib_at_start(arginput):
 
     # Write out file(s)
     output_hex_file.tofile(file_name_hex, 'hex')
-    output_hex_file.tofile(file_name_bin, 'bin')
