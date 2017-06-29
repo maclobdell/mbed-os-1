@@ -238,4 +238,4 @@ def add_fib_at_start(arginput):
     output_hex_file.merge(input_hex_file, overlap='error')
 
     # Write out file(s)
-output_hex_file.tofile(file_name_hex, 'hex')
+    output_hex_file.tofile(file_name_hex, 'hex')
