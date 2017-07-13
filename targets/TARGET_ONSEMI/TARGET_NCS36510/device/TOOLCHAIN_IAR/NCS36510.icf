@@ -38,11 +38,12 @@ define memory mem with size = 4G;
 define region FLASH_region   =   mem:[from __ICFEDIT_region_IROM1_start__ to __ICFEDIT_region_IROM1_end__]
                               |  mem:[from __ICFEDIT_region_IROM2_start__ to __ICFEDIT_region_IROM2_end__];
 
-define region RAM_region    =   mem:[from __ICFEDIT_region_IRAM1_start__ to __ICFEDIT_region_IRAM1_end__]
+define region RAM_region    =   mem:[from __ICFEDIT_region_IRAM3_start__ to __ICFEDIT_region_IRAM3_end__]
                               | mem:[from __ICFEDIT_region_IRAM2_start__ to __ICFEDIT_region_IRAM2_end__]
-                              | mem:[from __ICFEDIT_region_IRAM3_start__ to __ICFEDIT_region_IRAM3_end__];
+                              | mem:[from __ICFEDIT_region_IRAM1_start__ to __ICFEDIT_region_IRAM1_end__ - __ICFEDIT_size_cstack__ ];
                               
-                              
+define region CSTACK_region =   mem:[from __ICFEDIT_region_IRAM1_end__ - __ICFEDIT_size_cstack__ + 1 to __ICFEDIT_region_IRAM1_end__];                              
+
 /* Define overlays for MIB's, ths allows view of one MIB from a application level while
  * MAC and PHY only know about their own MIB */
 define overlay MIBOVERLAY { section MIBSTARTSECTION };
@@ -70,4 +71,6 @@ place at address mem:__ICFEDIT_intvec_start__ { readonly section .intvec, readon
 
 place in FLASH_region { readonly section .cstartup, readonly }; 
 
-place in RAM_region { readwrite, block HEAP, section XHEAP, readonly code section EXECINRAM, overlay MIBOVERLAY, readwrite section MIBENDSECTION, block CSTACK};
+place in RAM_region { readwrite, block HEAP, section XHEAP, readonly code section EXECINRAM, overlay MIBOVERLAY, readwrite section MIBENDSECTION};
+
+place at end of CSTACK_region    { block CSTACK };
