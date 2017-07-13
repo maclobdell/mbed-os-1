@@ -1,0 +1,13 @@
+
+
+tests fail on this PR, which branches off of master from 1 month ago.  
+
+either the PR commits introduced the problems, or the problems exist at the base of the PR, which is old.
+
+to test -
+
+option 1 - check out the base of the PR and retest.  
+
+option 2 - rebase the changes onto master and retest.  ** this is probably better.
+
+    - done.  a lot of failures.  must be related to heap or stack sizes.  

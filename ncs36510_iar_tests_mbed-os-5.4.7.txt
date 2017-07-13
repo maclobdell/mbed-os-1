@@ -1,0 +1,169 @@
++--------------+---------------+------------------------------------------------------------------------------+--------+--------------------+-------------+
+| target       | platform_name | test suite                                                                   | result | elapsed_time (sec) | copy_method |
++--------------+---------------+------------------------------------------------------------------------------+--------+--------------------+-------------+
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-basic_test                        | OK     | 7.36               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-basic_test_default                | OK     | 7.41               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_async_validate               | OK     | 7.26               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_control_async                | OK     | 7.21               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_control_repeat               | OK     | 7.52               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_selection                    | OK     | 7.51               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_setup_failure                | OK     | 7.22               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_teardown_failure             | OK     | 7.35               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-control_type                      | OK     | 7.17               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-minimal_async_scheduler           | OK     | 7.34               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-minimal_scheduler                 | OK     | 7.31               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-test_assertion_failure_test_setup | OK     | 7.38               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-test_setup_case_selection_failure | OK     | 7.42               | shell       |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-test_setup_failure                | OK     | 7.48               | shell       |
+| NCS36510-IAR | NCS36510      | features-tests-filesystem-heap_block_device                                  | OK     | 7.49               | shell       |
+| NCS36510-IAR | NCS36510      | features-tests-filesystem-util_block_device                                  | OK     | 7.36               | shell       |
+| NCS36510-IAR | NCS36510      | rtos-rtx-target_cortex_m-tests-memory-heap_and_stack                         | OK     | 7.38               | shell       |
+| NCS36510-IAR | NCS36510      | tests-events-queue                                                           | OK     | 7.3                | shell       |
+| NCS36510-IAR | NCS36510      | tests-events-timing                                                          | OK     | 7.4                | shell       |
+| NCS36510-IAR | NCS36510      | tests-integration-basic                                                      | OK     | 7.32               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-c_strings                                                 | OK     | 7.18               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-dev_null                                                  | OK     | 7.53               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-echo                                                      | OK     | 7.36               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-generic_tests                                             | OK     | 7.38               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-lp_timeout                                                | OK     | 7.65               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-race_test                                                 | OK     | 7.23               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-rtc                                                       | OK     | 7.37               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-stl_features                                              | OK     | 7.22               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-ticker                                                    | OK     | 7.37               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-timeout                                                   | OK     | 7.41               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-wait_us                                                   | OK     | 7.28               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-callback                                               | OK     | 7.21               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-callback_big                                           | OK     | 7.38               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-callback_small                                         | OK     | 7.23               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-functionpointer                                        | OK     | 7.39               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbed_hal-lp_ticker                                                     | OK     | 7.15               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-attributes                                              | OK     | 7.39               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-call_before_main                                        | OK     | 7.19               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-cpp                                                     | OK     | 7.32               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-div                                                     | OK     | 7.26               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-static_assert                                           | OK     | 7.4                | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-basic                                              | OK     | 7.4                | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-isr                                                | OK     | 7.28               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-mail                                               | OK     | 7.27               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-malloc                                             | OK     | 7.36               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-mutex                                              | OK     | 7.47               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-queue                                              | OK     | 7.7                | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-semaphore                                          | OK     | 7.49               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-signals                                            | OK     | 7.39               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-threads                                            | OK     | 7.46               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-timer                                              | OK     | 7.36               | shell       |
+| NCS36510-IAR | NCS36510      | tests-mbedtls-selftest                                                       | OK     | 7.28               | shell       |
+| NCS36510-IAR | NCS36510      | tests-netsocket-ip_parsing                                                   | OK     | 7.41               | shell       |
++--------------+---------------+------------------------------------------------------------------------------+--------+--------------------+-------------+
+mbedgt: test suite results: 53 OK
+mbedgt: test case report:
++--------------+---------------+------------------------------------------------------------------------------+----------------+--------+--------+--------+--------------------+
+| target       | platform_name | test suite                                                                   | test case      | passed | failed | result | elapsed_time (sec) |
++--------------+---------------+------------------------------------------------------------------------------+----------------+--------+--------+--------+--------------------+
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-basic_test                        | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-basic_test                        | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-basic_test_default                | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-basic_test_default                | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_async_validate               | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_async_validate               | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_control_async                | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_control_async                | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_control_repeat               | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_control_repeat               | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_selection                    | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_selection                    | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_setup_failure                | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_setup_failure                | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_teardown_failure             | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-case_teardown_failure             | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-control_type                      | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-control_type                      | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-minimal_async_scheduler           | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-minimal_async_scheduler           | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-minimal_scheduler                 | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-minimal_scheduler                 | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-test_assertion_failure_test_setup | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-test_assertion_failure_test_setup | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-test_setup_case_selection_failure | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-test_setup_case_selection_failure | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-test_setup_failure                | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | features-frameworks-utest-tests-unit_tests-test_setup_failure                | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-tests-filesystem-heap_block_device                                  | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | features-tests-filesystem-heap_block_device                                  | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | features-tests-filesystem-util_block_device                                  | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | features-tests-filesystem-util_block_device                                  | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | rtos-rtx-target_cortex_m-tests-memory-heap_and_stack                         | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | rtos-rtx-target_cortex_m-tests-memory-heap_and_stack                         | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-events-queue                                                           | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-events-queue                                                           | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-events-timing                                                          | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-events-timing                                                          | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-integration-basic                                                      | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-integration-basic                                                      | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-c_strings                                                 | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-c_strings                                                 | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-dev_null                                                  | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-dev_null                                                  | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-echo                                                      | Repeating Test | 2      | 0      | OK     | 0.09               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-echo                                                      | Simple Test    | 1      | 0      | OK     | 0.03               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-generic_tests                                             | Repeating Test | 2      | 0      | OK     | 0.09               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-generic_tests                                             | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-lp_timeout                                                | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-lp_timeout                                                | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-race_test                                                 | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-race_test                                                 | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-rtc                                                       | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-rtc                                                       | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-stl_features                                              | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-stl_features                                              | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-ticker                                                    | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-ticker                                                    | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-timeout                                                   | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-timeout                                                   | Simple Test    | 1      | 0      | OK     | 0.03               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-wait_us                                                   | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbed_drivers-wait_us                                                   | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-callback                                               | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-callback                                               | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-callback_big                                           | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-callback_big                                           | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-callback_small                                         | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-callback_small                                         | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-functionpointer                                        | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbed_functional-functionpointer                                        | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbed_hal-lp_ticker                                                     | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbed_hal-lp_ticker                                                     | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-attributes                                              | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-attributes                                              | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-call_before_main                                        | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-call_before_main                                        | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-cpp                                                     | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-cpp                                                     | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-div                                                     | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-div                                                     | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-static_assert                                           | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-mbed-static_assert                                           | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-basic                                              | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-basic                                              | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-isr                                                | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-isr                                                | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-mail                                               | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-mail                                               | Simple Test    | 1      | 0      | OK     | 0.05               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-malloc                                             | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-malloc                                             | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-mutex                                              | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-mutex                                              | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-queue                                              | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-queue                                              | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-semaphore                                          | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-semaphore                                          | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-signals                                            | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-signals                                            | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-threads                                            | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-threads                                            | Simple Test    | 1      | 0      | OK     | 0.05               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-timer                                              | Repeating Test | 2      | 0      | OK     | 0.08               |
+| NCS36510-IAR | NCS36510      | tests-mbedmicro-rtos-mbed-timer                                              | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-mbedtls-selftest                                                       | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-mbedtls-selftest                                                       | Simple Test    | 1      | 0      | OK     | 0.04               |
+| NCS36510-IAR | NCS36510      | tests-netsocket-ip_parsing                                                   | Repeating Test | 2      | 0      | OK     | 0.07               |
+| NCS36510-IAR | NCS36510      | tests-netsocket-ip_parsing                                                   | Simple Test    | 1      | 0      | OK     | 0.04               |
++--------------+---------------+------------------------------------------------------------------------------+----------------+--------+--------+--------+--------------------+
