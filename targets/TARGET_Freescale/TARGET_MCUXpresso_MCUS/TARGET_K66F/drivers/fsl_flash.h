@@ -180,7 +180,7 @@ enum _flash_status
  */
 enum _flash_driver_api_keys
 {
-    kFLASH_apiEraseKey = FOUR_CHAR_CODE('k', 'f', 'e', 'k') /*!< Key value used to validate all flash erase APIs.*/
+    kFLASH_ApiEraseKey = FOUR_CHAR_CODE('k', 'f', 'e', 'k') /*!< Key value used to validate all flash erase APIs.*/
 };
 /*@}*/
 
@@ -189,8 +189,8 @@ enum _flash_driver_api_keys
  */
 typedef enum _flash_margin_value
 {
-    kFLASH_marginValueNormal,  /*!< Use the 'normal' read level for 1s.*/
-    kFLASH_marginValueUser,    /*!< Apply the 'User' margin to the normal read-1 level.*/
+    kFLASH_MarginValueNormal,  /*!< Use the 'normal' read level for 1s.*/
+    kFLASH_MarginValueUser,    /*!< Apply the 'User' margin to the normal read-1 level.*/
     kFLASH_marginValueFactory, /*!< Apply the 'Factory' margin to the normal read-1 level.*/
     kFLASH_marginValueInvalid  /*!< Not real margin level, Used to determine the range of valid margin level. */
 } flash_margin_value_t;
@@ -228,25 +228,25 @@ typedef enum _flash_execute_only_access_state
 /*!
  * @brief Enumeration for various flash properties.
  */
-typedef enum _flash_property_tag
+typedef enum _flash_Property_tag
 {
-    kFLASH_propertyPflashSectorSize = 0x00U,         /*!< Pflash sector size property.*/
-    kFLASH_propertyPflashTotalSize = 0x01U,          /*!< Pflash total size property.*/
-    kFLASH_propertyPflashBlockSize = 0x02U,          /*!< Pflash block size property.*/
-    kFLASH_propertyPflashBlockCount = 0x03U,         /*!< Pflash block count property.*/
-    kFLASH_propertyPflashBlockBaseAddr = 0x04U,      /*!< Pflash block base address property.*/
-    kFLASH_propertyPflashFacSupport = 0x05U,         /*!< Pflash fac support property.*/
-    kFLASH_propertyPflashAccessSegmentSize = 0x06U,  /*!< Pflash access segment size property.*/
-    kFLASH_propertyPflashAccessSegmentCount = 0x07U, /*!< Pflash access segment count property.*/
-    kFLASH_propertyFlexRamBlockBaseAddr = 0x08U,     /*!< FlexRam block base address property.*/
-    kFLASH_propertyFlexRamTotalSize = 0x09U,         /*!< FlexRam total size property.*/
-    kFLASH_propertyDflashSectorSize = 0x10U,         /*!< Dflash sector size property.*/
-    kFLASH_propertyDflashTotalSize = 0x11U,          /*!< Dflash total size property.*/
-    kFLASH_propertyDflashBlockSize = 0x12U,          /*!< Dflash block count property.*/
-    kFLASH_propertyDflashBlockCount = 0x13U,         /*!< Dflash block base address property.*/
-    kFLASH_propertyDflashBlockBaseAddr = 0x14U,      /*!< Eeprom total size property.*/
-    kFLASH_propertyEepromTotalSize = 0x15U
-} flash_property_tag_t;
+    kFLASH_PropertyPflashSectorSize = 0x00U,         /*!< Pflash sector size property.*/
+    kFLASH_PropertyPflashTotalSize = 0x01U,          /*!< Pflash total size property.*/
+    kFLASH_PropertyPflashBlockSize = 0x02U,          /*!< Pflash block size property.*/
+    kFLASH_PropertyPflashBlockCount = 0x03U,         /*!< Pflash block count property.*/
+    kFLASH_PropertyPflashBlockBaseAddr = 0x04U,      /*!< Pflash block base address property.*/
+    kFLASH_PropertyPflashFacSupport = 0x05U,         /*!< Pflash fac support property.*/
+    kFLASH_PropertyPflashAccessSegmentSize = 0x06U,  /*!< Pflash access segment size property.*/
+    kFLASH_PropertyPflashAccessSegmentCount = 0x07U, /*!< Pflash access segment count property.*/
+    kFLASH_PropertyFlexRamBlockBaseAddr = 0x08U,     /*!< FlexRam block base address property.*/
+    kFLASH_PropertyFlexRamTotalSize = 0x09U,         /*!< FlexRam total size property.*/
+    kFLASH_PropertyDflashSectorSize = 0x10U,         /*!< Dflash sector size property.*/
+    kFLASH_PropertyDflashTotalSize = 0x11U,          /*!< Dflash total size property.*/
+    kFLASH_PropertyDflashBlockSize = 0x12U,          /*!< Dflash block count property.*/
+    kFLASH_PropertyDflashBlockCount = 0x13U,         /*!< Dflash block base address property.*/
+    kFLASH_PropertyDflashBlockBaseAddr = 0x14U,      /*!< Eeprom total size property.*/
+    kFLASH_PropertyEepromTotalSize = 0x15U
+} flash_Property_tag_t;
 
 /*!
  * @brief Constants for execute-in-ram flash function.
@@ -936,14 +936,14 @@ status_t FLASH_IsExecuteOnly(flash_config_t *config,
  *
  * @param config Pointer to storage for the driver runtime state.
  * @param whichProperty The desired property from the list of properties in
- *        enum flash_property_tag_t
+ *        enum flash_Property_tag_t
  * @param value Pointer to the value returned for the desired flash property
  *
  * @retval #kStatus_FLASH_Success Api was executed successfully.
  * @retval #kStatus_FLASH_InvalidArgument Invalid argument is provided.
  * @retval #kStatus_FLASH_UnknownProperty unknown property tag
  */
-status_t FLASH_GetProperty(flash_config_t *config, flash_property_tag_t whichProperty, uint32_t *value);
+status_t FLASH_GetProperty(flash_config_t *config, flash_Property_tag_t whichProperty, uint32_t *value);
 
 /*@}*/
 

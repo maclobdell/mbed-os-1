@@ -194,7 +194,7 @@
 /*!
  * @brief Enumeration for access segment property.
  */
-enum _flash_access_segment_property
+enum _flash_access_segment_Property
 {
     kFLASH_accessSegmentBase = 256UL,
 };
@@ -202,7 +202,7 @@ enum _flash_access_segment_property
 /*!
  * @brief Enumeration for acceleration ram property.
  */
-enum _flash_acceleration_ram_property
+enum _flash_acceleration_ram_Property
 {
     kFLASH_accelerationRamSize = 0x400U
 };
@@ -1494,7 +1494,7 @@ status_t FLASH_IsExecuteOnly(flash_config_t *config,
     return (returnCode);
 }
 
-status_t FLASH_GetProperty(flash_config_t *config, flash_property_tag_t whichProperty, uint32_t *value)
+status_t FLASH_GetProperty(flash_config_t *config, flash_Property_tag_t whichProperty, uint32_t *value)
 {
     if ((config == NULL) || (value == NULL))
     {
@@ -1503,27 +1503,27 @@ status_t FLASH_GetProperty(flash_config_t *config, flash_property_tag_t whichPro
 
     switch (whichProperty)
     {
-        case kFLASH_propertyPflashSectorSize:
+        case kFLASH_PropertyPflashSectorSize:
             *value = config->PFlashSectorSize;
             break;
 
-        case kFLASH_propertyPflashTotalSize:
+        case kFLASH_PropertyPflashTotalSize:
             *value = config->PFlashTotalSize;
             break;
 
-        case kFLASH_propertyPflashBlockSize:
+        case kFLASH_PropertyPflashBlockSize:
             *value = config->PFlashTotalSize / FSL_FEATURE_FLASH_PFLASH_BLOCK_COUNT;
             break;
 
-        case kFLASH_propertyPflashBlockCount:
+        case kFLASH_PropertyPflashBlockCount:
             *value = config->PFlashBlockCount;
             break;
 
-        case kFLASH_propertyPflashBlockBaseAddr:
+        case kFLASH_PropertyPflashBlockBaseAddr:
             *value = config->PFlashBlockBase;
             break;
 
-        case kFLASH_propertyPflashFacSupport:
+        case kFLASH_PropertyPflashFacSupport:
 #if defined(FSL_FEATURE_FLASH_HAS_ACCESS_CONTROL)
             *value = FSL_FEATURE_FLASH_HAS_ACCESS_CONTROL;
 #else
@@ -1531,31 +1531,31 @@ status_t FLASH_GetProperty(flash_config_t *config, flash_property_tag_t whichPro
 #endif /* FSL_FEATURE_FLASH_HAS_ACCESS_CONTROL */
             break;
 
-        case kFLASH_propertyPflashAccessSegmentSize:
+        case kFLASH_PropertyPflashAccessSegmentSize:
             *value = config->PFlashAccessSegmentSize;
             break;
 
-        case kFLASH_propertyPflashAccessSegmentCount:
+        case kFLASH_PropertyPflashAccessSegmentCount:
             *value = config->PFlashAccessSegmentCount;
             break;
 
 #if FLASH_SSD_IS_FLEXNVM_ENABLED
-        case kFLASH_propertyDflashSectorSize:
+        case kFLASH_PropertyDflashSectorSize:
             *value = FSL_FEATURE_FLASH_FLEX_NVM_BLOCK_SECTOR_SIZE;
             break;
-        case kFLASH_propertyDflashTotalSize:
+        case kFLASH_PropertyDflashTotalSize:
             *value = config->DFlashTotalSize;
             break;
-        case kFLASH_propertyDflashBlockSize:
+        case kFLASH_PropertyDflashBlockSize:
             *value = FSL_FEATURE_FLASH_FLEX_NVM_BLOCK_SIZE;
             break;
-        case kFLASH_propertyDflashBlockCount:
+        case kFLASH_PropertyDflashBlockCount:
             *value = FSL_FEATURE_FLASH_FLEX_NVM_BLOCK_COUNT;
             break;
-        case kFLASH_propertyDflashBlockBaseAddr:
+        case kFLASH_PropertyDflashBlockBaseAddr:
             *value = config->DFlashBlockBase;
             break;
-        case kFLASH_propertyEepromTotalSize:
+        case kFLASH_PropertyEepromTotalSize:
             *value = config->EEpromTotalSize;
             break;
 #endif /* FLASH_SSD_IS_FLEXNVM_ENABLED */
@@ -1699,7 +1699,7 @@ status_t FLASH_Swap(flash_config_t *config, uint32_t address, flash_swap_functio
                     /* If current swap mode is Update, Erase indicator sector in non active block
                      * to proceed swap system to update-erased state */
                     returnCode = FLASH_Erase(config, address + (config->PFlashTotalSize >> 1),
-                                             FSL_FEATURE_FLASH_PFLASH_SECTOR_CMD_ADDRESS_ALIGMENT, kFLASH_apiEraseKey);
+                                             FSL_FEATURE_FLASH_PFLASH_SECTOR_CMD_ADDRESS_ALIGMENT, kFLASH_ApiEraseKey);
                     break;
                 case kFLASH_swapStateUpdateErased:
                     /* If current swap mode is Update or Update-Erased, progress Swap to COMPLETE State */
@@ -2281,7 +2281,7 @@ static status_t flash_get_matched_operation_info(flash_config_t *config,
 static status_t flash_check_user_key(uint32_t key)
 {
     /* Validate the user key */
-    if (key != kFLASH_apiEraseKey)
+    if (key != kFLASH_ApiEraseKey)
     {
         return kStatus_FLASH_EraseKeyError;
     }
