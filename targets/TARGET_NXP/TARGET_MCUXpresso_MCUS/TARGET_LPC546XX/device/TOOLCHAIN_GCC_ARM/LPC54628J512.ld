@@ -51,6 +51,14 @@ __ram_vector_table__ = 1;
 __stack_size__ = 0x8000;
 __heap_size__ = 0xC000;
 
+#if !defined(MBED_APP_START)
+  #define MBED_APP_START 0
+#endif
+
+#if !defined(MBED_APP_SIZE)
+  #define MBED_APP_SIZE 0x80000
+#endif
+
 HEAP_SIZE  = DEFINED(__heap_size__)  ? __heap_size__  : 0x0400;
 STACK_SIZE = DEFINED(__stack_size__) ? __stack_size__ : 0x0800;
 M_VECTOR_RAM_SIZE = DEFINED(__ram_vector_table__) ? 0x400 : 0x0;
@@ -59,8 +67,8 @@ M_VECTOR_RAM_SIZE = DEFINED(__ram_vector_table__) ? 0x400 : 0x0;
 /* Specify the memory areas */
 MEMORY
 {
-  m_interrupts          (RX)  : ORIGIN = 0x00000000, LENGTH = 0x00000400
-  m_text                (RX)  : ORIGIN = 0x00000400, LENGTH = 0x0007FC00
+  m_interrupts          (RX)  : ORIGIN = MBED_APP_START, LENGTH = 0x00000400
+  m_text                (RX)  : ORIGIN = MBED_APP_START + 0x400, LENGTH = MBED_APP_SIZE - 0x400
   m_data                (RW)  : ORIGIN = 0x20000000, LENGTH = 0x00028000
   m_sramx               (RW)  : ORIGIN = 0x04000000, LENGTH = 0x00008000
   m_usb_sram            (RW)  : ORIGIN = 0x40100000, LENGTH = 0x00002000
@@ -250,4 +258,3 @@ SECTIONS
 
   ASSERT(__StackLimit >= __HeapLimit, "region m_data overflowed with stack and heap")
 }
-
