@@ -279,6 +279,15 @@ nsapi_error_t AT_CellularNetwork::activate_context()
 {
     _at.lock();
 
+    for(int i=1; i < 10; i++) {
+    _at.cmd_start("AT+CGDCONT=");
+    _at.write_int(i);
+    _at.cmd_stop();
+    _at.resp_start();
+    _at.resp_stop();
+    }
+    _at.clear_error();
+
     nsapi_error_t err = NSAPI_ERROR_OK;
 
     // try to find or create context with suitable stack
