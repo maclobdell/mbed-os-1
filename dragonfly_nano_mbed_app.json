@@ -1,9 +1,9 @@
 {
     "config": {
         "sock-type": "UDP",
-        "sim-pin-code": {
+        "cellular-sim-pin": {
             "help": "SIM PIN code, set to 0 if none",
-            "value": 0
+            "value": "\"1234\""
         },
         "apn": {
             "help": "The APN string to use for this SIM/network, set to 0 if none",
@@ -40,9 +40,11 @@
             "lwip.ethernet-enabled": false,
             "lwip.ppp-enabled": true,
             "lwip.tcp-enabled": true,
-            "platform.stdio-baud-rate": 115200,
             "platform.default-serial-baud-rate": 115200,
-            "cellular.debug-at": false
+            "platform.stdio-baud-rate": 115200,
+            "platform.stdio-convert-newlines": true,
+            "platform.stdio-buffered-serial": true,
+            "cellular.debug-at": true
         }
     }
 }
