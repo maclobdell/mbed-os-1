@@ -1,13 +1,13 @@
 {
     "config": {
         "sock-type": "UDP",
-        "sim-pin-code": {
+        "cellular-sim-pin": {
             "help": "SIM PIN code, set to 0 if none",
-            "value": 0
+            "value":"\"0000\"" 
         },
         "apn": {
             "help": "The APN string to use for this SIM/network, set to 0 if none",
-            "value": "\"nxtgenphone\""
+            "value": "\"phone\""
         },
         "username": {
             "help": "The user name string to use for this APN, set to zero if none",
@@ -33,6 +33,7 @@
   },
     "target_overrides": {
         "*": {
+	    "cellular.use-apn-lookup": false,
             "target.features_add": ["LWIP"],
             "mbed-trace.enable": true,
             "lwip.ipv4-enabled": true,
