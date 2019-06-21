@@ -888,7 +888,6 @@ int _storage_config_TDB_EXTERNAL()
     //add FlashSimBlockDevice on top of it.
     if (bd->get_erase_value() == -1) {
         //TDBStore needs FlashSimBlockDevice when working with non-flash type block device
-#if (defined(COMPONENT_SD) || defined(COMPONENT_SDIO)) &&  !defined(COMPONENT_SPIF) && !defined(COMPONENT_QSPIF) && !defined(COMPONENT_DATAFLASH)
         if (bd->init() != MBED_SUCCESS) {
             tr_error("KV Config: Fail to init external BlockDevice.");
             return MBED_ERROR_FAILED_OPERATION ;
