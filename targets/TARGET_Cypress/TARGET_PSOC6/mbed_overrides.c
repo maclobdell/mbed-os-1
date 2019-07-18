@@ -21,14 +21,14 @@
 #include "cyhal_hwmgr.h"
 #include "cybsp_api_core.h"
 #include "mbed_power_mgmt.h"
-#include "rtos_idle.h"
+//#include "rtos_idle.h"
 
 #if defined(COMPONENT_SPM_MAILBOX)
 void mailbox_init(void);
 #endif
 
 
-#if (defined(CY_CFG_PWR_SYS_IDLE_MODE) && (CY_CFG_PWR_SYS_IDLE_MODE == CY_CFG_PWR_MODE_ACTIVE))
+//#if (defined(CY_CFG_PWR_SYS_IDLE_MODE) && (CY_CFG_PWR_SYS_IDLE_MODE == CY_CFG_PWR_MODE_ACTIVE))
 /*******************************************************************************
 * Function Name: active_idle_hook
 ****************************************************************************//**
@@ -37,11 +37,11 @@ void mailbox_init(void);
 * automatically any time the system is idle.
 *
 *******************************************************************************/
-static void active_idle_hook(void)
-{
-    /* Do nothing, so the rtos_idle_loop() performs while(1) */
-}
-#endif
+//static void active_idle_hook(void)
+//{
+//    /* Do nothing, so the rtos_idle_loop() performs while(1) */
+//}
+//#endif
 
 /*******************************************************************************
 * Function Name: mbed_sdk_init
@@ -89,17 +89,17 @@ void mbed_sdk_init(void)
     __enable_irq();
 #endif
 
-#if defined (CY_CFG_PWR_SYS_IDLE_MODE)
+//#if defined (CY_CFG_PWR_SYS_IDLE_MODE)
     /* Configure the lowest power state the system is allowed to enter
     * based on the System Idle Power Mode parameter value in the Device
     * Configurator. The default value is system deep sleep.
     */
-#if (CY_CFG_PWR_SYS_IDLE_MODE == CY_CFG_PWR_MODE_ACTIVE)
-    rtos_attach_idle_hook(&active_idle_hook);
-#elif (CY_CFG_PWR_SYS_IDLE_MODE == CY_CFG_PWR_MODE_SLEEP)
-    sleep_manager_lock_deep_sleep();
-#else
-    /* Deep sleep is default state */
-#endif
-#endif
+//#if (CY_CFG_PWR_SYS_IDLE_MODE == CY_CFG_PWR_MODE_ACTIVE)
+//    rtos_attach_idle_hook(&active_idle_hook);
+//#elif (CY_CFG_PWR_SYS_IDLE_MODE == CY_CFG_PWR_MODE_SLEEP)
+//    sleep_manager_lock_deep_sleep();
+//#else
+//    /* Deep sleep is default state */
+//#endif
+//#endif
 }
