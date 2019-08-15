@@ -41,7 +41,7 @@ GROUP(-lgcc -lc -lnosys)
 ENTRY(Reset_Handler)
 
 #if !defined(MBED_ROM_START)
-  #define MBED_ROM_START    0x10000000
+  #define MBED_ROM_START    0x10002000
 #endif
 
 /* MBED_APP_START is being  used by the bootloader build script and
@@ -118,12 +118,9 @@ MEMORY
     efuse             (r)     : ORIGIN = 0x90700000, LENGTH = 0x100000     /*   1 MB */
 }
 
-/* Size and start address of the Cortex-M0+ application image */
-FLASH_CM0P_SIZE  = 0x2000;
-FLASH_CM0P_START = ORIGIN(flash);
 /* Size and start address of the Cortex-M4 application image */
-FLASH_CM4_SIZE   = LENGTH(flash) - FLASH_CM0P_SIZE;
-FLASH_CM4_START  = FLASH_CM0P_START + FLASH_CM0P_SIZE;
+FLASH_CM4_SIZE   = LENGTH(flash);
+FLASH_CM4_START  = ORIGIN(flash);
 
 /* Library configurations */
 GROUP(libgcc.a libc.a libm.a libnosys.a)
@@ -164,15 +161,6 @@ GROUP(libgcc.a libc.a libm.a libnosys.a)
 
 SECTIONS
 {
-     /* Cortex-M0+ application image */
-    .cy_m0p_image FLASH_CM0P_START :
-    {
-        . = ALIGN(4);
-        __cy_m0p_code_start = . ;
-        KEEP(*(.cy_m0p_image))
-        __cy_m0p_code_end = . ;
-    } > flash
-
     /* Cortex-M4 application image */
     .text FLASH_CM4_START :
     {
