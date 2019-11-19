@@ -52,9 +52,9 @@ FLASH_CM0P_SIZE = 0x2000;
 * customized by the bootloader config, the application image should not
 * include CM0p prebuilt image.
 */
-#if !defined(MBED_APP_START)
+//#if !defined(MBED_APP_START)
   #define MBED_APP_START (MBED_ROM_START + FLASH_CM0P_SIZE)
-#endif
+//#endif
 
 #if !defined(MBED_ROM_SIZE)
   #define MBED_ROM_SIZE     0x00200000
