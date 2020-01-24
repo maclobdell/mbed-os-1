@@ -9114,7 +9114,14 @@
         "public": false,
         "overrides": {
             "network-default-interface-type": "WIFI"
-        }
+        },
+        "bootloader_supported": true,
+        "mbed_rom_start": "0x10000000",			
+        "mbed_rom_size": "0x00200000",
+        "sectors": [[268435456, 512]],
+        "mbed_ram_start": "0x08002000",
+        "mbed_ram_size": "0x000FD800",
+        "device_name": "none"
     },
     "CY8CMOD_062S2_43012": {
         "inherits": ["MCU_PSOC6_M4"],
