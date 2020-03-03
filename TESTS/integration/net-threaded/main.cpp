@@ -72,7 +72,9 @@ static control_t setup_network(const size_t call_count)
         }
     }
     TEST_ASSERT_EQUAL(NSAPI_ERROR_OK, err);
-    tr_info("[NET] IP address is '%s'", net->get_ip_address());
+    SocketAddress sock_addr;
+    net->get_ip_address(&sock_addr);
+    tr_info("[NET] IP address is '%s'", sock_addr.get_ip_address());
     tr_info("[NET] MAC address is '%s'", net->get_mac_address());
     return CaseNext;
 }
@@ -102,7 +104,7 @@ static control_t download_2_threads(const size_t call_count)
     Thread t1;
     Thread t2;
     t1.start(download_fn);
-    wait(0.5);
+    thread_sleep_for(500);
     t2.start(download_fn);
     t2.join();
     t1.join();
