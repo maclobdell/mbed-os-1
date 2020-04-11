@@ -53,9 +53,9 @@ if (!isdefinedsymbol(MBED_ROM_START)) {
  * customized by the bootloader config, the application image should not
  * include CM0p prebuilt image.
  */
-if (!isdefinedsymbol(MBED_APP_START)) {
+//if (!isdefinedsymbol(MBED_APP_START)) {
   define symbol MBED_APP_START = (MBED_ROM_START + FLASH_CM0P_SIZE);
-}
+//}
 
 if (!isdefinedsymbol(MBED_ROM_SIZE)) {
   define symbol MBED_ROM_SIZE = 0x00200000;
