@@ -89,7 +89,7 @@
 #define RAM_START               MBED_RAM_START
 #define RAM_SIZE                MBED_RAM_SIZE
 ; Flash
-#define FLASH_START             MBED_APP_START
+#define FLASH_START             MBED_APP_START+BOOT_HEADER_SIZE
 #define FLASH_SIZE              MBED_APP_SIZE
 
 ; The size of the MCU boot header area at the start of FLASH
@@ -136,7 +136,7 @@
 ; Cortex-M4 application flash area
 LR_IROM1 FLASH_START FLASH_SIZE
 {
-    ER_FLASH_VECTORS +BOOT_HEADER_SIZE
+    ER_FLASH_VECTORS +0
     {
         * (RESET, +FIRST)
     }
